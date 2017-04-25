@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Daily Transaction Entry</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            ol {
+                /*
+                list-style-type: none;
+                */
+                list-style-position: inside;
+                /*
+                border: 1px solid black;
+                width: 26%;
+                */
+                
+            }
+            ol li {
+                border: 1px solid black;
+                padding: 7px;
+                width: 30%;
+            }
+            ol li:hover {
+                font-weight: bold;
+                font-size: 1.2em;
+            }
+            ol li.lime {
+               background-color: #00FF00;
+            }
+            ol li.orange {
+                background-color:#FFA500;
+            }
+            p.green {
+                width:20%; 
+                height: 30px; 
+                background-color: lime;
+            }
+            p.orange {
+                width:20%; 
+                height: 30px; 
+                background-color:orange;
+            }
+            a {
+                color: black;
+                margin-left: 2%;
+                display: inline-block;
+                padding-top: 3px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>WebApplication 2 Index</h2>
+        <div>
+            <ol>
+                <li class="lime"><a href="DailyTransactionEntry?JSTL=False">Daily Transactions</a></li>
+                <li class="orange"><a href="DailyTransactionEntry?JSTL=False&debugJSP=True">Daily Transactions Debug JSP</a></li>
+                <li class="lime"><a href="DailyTransactionEntry?JSTL=True">Daily Transactions JSTL</a></li>
+                <li class="orange"><a href="DailyTransactionEntry?JSTL=True&debugJSP=True">Daily Transactions JSTL Debug JSP</a></li>
+                <li class="lime"><a href="DailyTransactionSearch?JSTL=False">Daily Transaction Search</a></li>
+                <li class="orange"><a href="DailyTransactionSearch?JSTL=False&debugJSP=True">Daily Transaction Search Debug JSP</a></li>
+                <li>Next Index Entry</li>
+            </ol>
+        </div>
+    </body>
+</html>

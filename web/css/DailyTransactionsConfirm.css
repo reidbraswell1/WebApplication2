@@ -1,0 +1,32 @@
+.my_content_container input {
+     border-bottom: 5px solid blue;
+     border-left: 5px solid blue;
+     border-right: 5px solid blue;
+     border-top: 5px solid blue;
+     border-radius: 40px;
+     color: #000000;
+     display: inline;
+     height: 4em;
+     padding: 1em 1em 1em 1em;
+     width: 8em;       
+     text-decoration: none;
+     background-color: #66FF33;
+     font-weight: bold;
+     text-align: center;
+     padding-top: 1em;    
+}
+body {
+    background-color: yellow;
+}
+h1 {
+    text-align: center;
+}
+input {
+    margin: 1em;
+}
+span.message {
+    color: black;
+    font-weight: bold;
+    background-color:  white;
+    width: 400px;
+}

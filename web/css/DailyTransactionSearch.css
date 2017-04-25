@@ -1,0 +1,55 @@
+.my_content_container input {
+     border-bottom: 5px solid blue;
+     border-left: 5px solid blue;
+     border-right: 5px solid blue;
+     border-top: 5px solid blue;
+     border-radius: 40px;
+     color: #000000;
+     display: inline;
+     height: 4em;
+     padding: 1em 1em 1em 1em;
+     width: 9em;       
+     text-decoration: none;
+     background-color: #66FF33;
+     font-weight: bold;
+     text-align: center;
+     padding-top: 1em;    
+}
+.submits {
+    margin: 1em;
+}
+
+body {
+    background-color: yellow;
+}
+div.labels {
+    display:inline-block;
+    background-color: lightgrey;
+    width: 50px;
+    padding: 10px;
+    border: 10px solid navy;
+    margin: 10px;
+    height: 300px;
+    vertical-align: top;
+}
+            
+label {
+    display: inline-block;
+    width: 100px;
+    border: 2px solid red;
+    text-align: right;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input,select {
+    border: 2px solid blue;
+    margin-left: 2px;
+    font-weight: bold;
+    padding-left: 3px;
+}
+.message {
+    color: red;
+    background-color:  white;
+    width: 400px;
+}

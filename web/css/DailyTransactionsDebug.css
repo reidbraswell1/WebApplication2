@@ -1,0 +1,40 @@
+body {
+    background-color: yellow;
+}
+div.labels {
+    display:inline-block;
+    background-color: lightgrey;
+    width: 50px;
+    padding: 10px;
+    border: 10px solid navy;
+    margin: 10px;
+    height: 300px;
+    vertical-align: top;
+}
+
+div.inputs {
+    display:inline-block;
+    background-color: lightgrey;
+    width: 300px;
+    padding: 10px;
+    border: 10px solid navy;
+    margin-top: 1px;
+    height: 300px;
+    vertical-align: top;
+}
+            
+label {
+    display: inline-block;
+    width: 100px;
+    border: 2px solid red;
+    text-align: right;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input,select {
+    border: 2px solid blue;
+    margin-left: 2px;
+    font-weight: bold;
+    padding-left: 3px;
+}

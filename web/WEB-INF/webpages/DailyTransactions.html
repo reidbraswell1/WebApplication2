@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/DailyTransactions.css">
+        <!--
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath/WEB-INF/webpages/DailyTransactions.css}">
+        -->
+        <title>Daily Transactions</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        </style>
+
+    </head>
+    <body>
+        <h1 align="center">Daily Transaction Entry</h1> 
+        
+        <form action="DailyTransactionEntry" method="post" enctype="application/x-www-form-urlencoded">
+            <div style="width: 400px">
+                <label>Date: </label>
+                <input type="text" name="tran_date" required="required" placeholder="MM/DD/YYYY"/>
+                <br />
+                <label>Time: </label>
+                <input type="time" name="tran_time" required="required" placeholder="HH:MM AM or PM"/>
+                <br/>
+                <label>Amount: </label>
+                <input type="number" name="tran_amount" min=".01" max="9999.99" step=".01" required="required" placeholder="Amount .01-9999.99" />
+                <br/>
+                    <label>Account: </label>
+                    <select required name="tran_account" style="font-family: 'Roboto'">
+                        <option value="0945">0945 - UCU Visa</option>
+                        <option value="3345">3345 - UCU Visa</option>
+                        <option value="4552">4552 - UCU Visa</option>
+                        <option value="5444">5444 - BBT Visa</option>
+                    </select>
+                <br/>
+                    <label>Note: </label>
+                    <input type="text" name="tran_note" required="required" placeholder="Note-Required"/>
+            </div>
+            <input type="submit" value="Submit" name="Submit"/>
+            <input type="submit" value="Debug" name="Debug"/>
+            <input type="submit" value="Debug Error" name="DebugError"/>
+        </form>
+  
+    </body>
+</html>
