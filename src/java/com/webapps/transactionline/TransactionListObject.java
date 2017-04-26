@@ -5,6 +5,7 @@
  */
 package com.webapps.transactionline;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,7 +20,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author reid
  */
-public class TransactionListObject {
+public class TransactionListObject implements Serializable {
     
     private static Log log = LogFactory.getLog(TransactionListObject.class);
     private static Logger LOGGER = Logger.getLogger(TransactionListObject.class.getName());
