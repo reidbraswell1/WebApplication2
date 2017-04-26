@@ -3,7 +3,10 @@
                         xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
                         xmlns:fn="http://java.sun.com/jsp/jstl/functions"
                         xmlns:display="urn:jsptld:http://displaytag.sf.net">
+  <%--
   <jsp:directive.page import="org.displaytag.sample.ReportList"/>
+  --%>
+  
   <jsp:directive.page import="java.util.Enumeration"/>
   <jsp:directive.page contentType="text/html; charset=UTF-8" />
   <jsp:output doctype-root-element="html" doctype-system=""/>
@@ -36,7 +39,9 @@
       -->
       
       <h4 class="h4">Search Parameters: ${message}</h4>
-  <jsp:scriptlet> request.setAttribute( "test", new ReportList(6) ); </jsp:scriptlet>
+  <%--
+  <jsp:scriptlet> request.setAttribute( "test", new ReportList(10) ); </jsp:scriptlet>
+  --%>
   <div>
   <display:table name="pageScope.resultSet" pagesize="${pageScope.pgSizeInt}" varTotals="myTotals" keepStatus="true" id="rowID" requestURI="${pageContext.request.contextPath}/TransactionSearchResults" decorator="org.displaytag.decorator.TotalTableDecorator" >
     <display:setProperty name="paging.banner.placement" value="bottom"/>
