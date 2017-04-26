@@ -502,12 +502,15 @@ public class DailyTransactionSearchServlet extends AbstractServlet {
             else {
                session.setAttribute(TRAN_ITEMS_PAGE,"0");
             }
+            LOGGER.log(Level.FINE, "Fowarding to Results JSP page " + RESULTS_PAGE_WEB_INF);
             forward(request,response,RESULTS_PAGE_WEB_INF);
+            LOGGER.log(Level.FINE, "Return from Fowarding to Results JSP page " + RESULTS_PAGE_WEB_INF);
+            
             //processRequest(request, response, "DailyTransactionSearchServlet ", resultList);
         }//if//
         if(parameterMap.containsKey(DEBUG_P))
             debugRequestParameters(request, response);
-        if(parameterMap.containsKey(DEBUG_ERROR_P));
+        if(parameterMap.containsKey(DEBUG_ERROR_P))
             throw new ServletException("Test of Error Page - DailyTransactionSearchServlet");
     }//doPost//
 
