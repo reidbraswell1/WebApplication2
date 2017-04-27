@@ -68,11 +68,19 @@
     nbproject/build-impl.xml file. 
 
     -->
+    <property file="nbproject/scp.properties"/>
     <target name="copy-war-to-ip21" depends="dist">
         <echo message="Removing War file ${war.name} from /home/reid"/>
         <delete file="/home/reid/${war.name}" verbose="true"/>
         <echo message="Beginning War File Copy"/>
-        <copy file="${dist.war}" todir="/home/reid/apache-tomcat-8.5.14/webapps" verbose="true" />
+        <copy file="${dist.war}" todir="${host.dir.ip21}" verbose="true" />
         <echo message="Ending War File Copy"/>
     </target>
+    <target name="scp-war-to-ip21" depends="dist">
+        <input message="Enter User Name: " addproperty="users.name"/>
+        <input message="Enter Password: " addproperty="users.password"/>
+        <echo message="User Name: ${users.name}"/>
+        <echo message="User Password: ${users.password}"/>
+        <scp file="${dist.war}" trust="true" verbose="true" todir="${users.name}:${users.password}@${host.name.ip21}:${host.directory.ip21}"/>
+    </target>    
 </project>
