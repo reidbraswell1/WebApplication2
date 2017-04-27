@@ -480,13 +480,19 @@ public class DailyTransactionSearchServlet extends AbstractServlet {
         if(parameterMap.containsKey(SUBMIT_P)) {
             message = validateCheckBoxes(request,response,parameterMap);
             if(message != null) {
+                LOGGER.log(Level.INFO, "Validate Check Boxes not filled in Begin foward back to sender. " + message);
                 doGet(request,response);
+                LOGGER.log(Level.INFO, "Validate Check Boxes not filled in End foward back to sender. " + message);
+                return;
             }
             if(parameterMap.containsKey(DATE_SEARCH_P)) {
                 message = validateStartEndDate(parameterMap);
                 if(message != null) {
                     request.setAttribute(MESSAGE_P, message);
+                    LOGGER.log(Level.INFO, "Start End Dates invalid or not filled in Begin foward back to sender. " + message);
                     doGet(request,response);
+                    LOGGER.log(Level.INFO, "Start End Dates invalid or not filled in End foward back to sender. " + message);                    
+                    return;
                 }//if//
             }//if//
             resultList = filterResultSet(parameterMap);
