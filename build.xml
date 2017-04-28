@@ -83,4 +83,15 @@
         <echo message="User Password: ${users.password}"/>
         <scp file="${dist.war}" trust="true" verbose="true" todir="${users.name}:${users.password}@${host.name.ip21}:${host.directory.ip21}"/>
     </target>    
+    <target name="ftp-war-to-ip11" depends="dist">
+        <input message="Enter User Name: " addproperty="users.name"/>
+        <input message="Enter Password: " addproperty="users.password"/>
+        <echo message="User Name: ${users.name}"/>
+        <echo message="User Password: ${users.password}"/>
+        <ftp server="${host.name.ip11}" remotedir="${host.directory.ip11}"
+             userid="${users.name}" password="${users.password}"
+             binary="yes" action="put" verbose="yes" >
+        <fileset file="${dist.war}"/>
+        </ftp>
+    </target>     
 </project>
