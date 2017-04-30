@@ -62,6 +62,7 @@ public class DailyTransactionEntry extends AbstractServlet {
     private static final String DEBUG_PARAMETERS  = CLASS_NAME.concat(".debugParameters");
     private static final String DEBUG_REQUEST     = CLASS_NAME.concat(".debugRequest");
     private static final String DEBUG_SESSION     = CLASS_NAME.concat(".debugSession");
+    private static final String DROP_DOWN_LIST    = CLASS_NAME.concat(".dropDownList");
     private static final String SESSION           = CLASS_NAME.concat(".session");
     private static final String TRANSACTION_LINE  = CLASS_NAME.concat(".transaction_line");
     private static final String MESSAGE           = CLASS_NAME.concat(".message");
@@ -173,7 +174,7 @@ public class DailyTransactionEntry extends AbstractServlet {
         
         if(sortedMap.isEmpty())
            LOGGER.log(Level.INFO,"Account Number Map is Empty!");
-        request.setAttribute(CLASS_NAME.concat(".dropDownList"), sortedMap);
+        request.setAttribute(DROP_DOWN_LIST, sortedMap);
     }//loadDropDownBox//
     
     /**
@@ -279,25 +280,6 @@ public class DailyTransactionEntry extends AbstractServlet {
         return map;
     }//getFormParameters//
     
-    /**
-     * 
-     * Sets form parameters obtained from map.
-     * 
-     * @param request
-     * @param response
-     * @param map 
-     */
-    private void setFormParameters(HttpServletRequest request,
-                                   HttpServletResponse response,
-                                   Map<String,String>map) {
-        
-        request.setAttribute(TRAN_DATE,map.get(TRAN_DATE_P));
-        request.setAttribute(TRAN_TIME,map.get(TRAN_TIME_P));
-        request.setAttribute(TRAN_AMOUNT,map.get(TRAN_AMOUNT_P));
-        request.setAttribute(TRAN_ACCOUNT,map.get(TRAN_ACCOUNT_P));
-        request.setAttribute(TRAN_NOTE,map.get(TRAN_NOTE_P));
-    }//setFormParameters//
-    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -326,7 +308,7 @@ public class DailyTransactionEntry extends AbstractServlet {
         
         if(mapParameters.containsKey(DEBUG))
         {
-            LOGGER.log(Level.FINE,"doPost debug submission");
+            LOGGER.log(Level.INFO,"doPost debug submission");
             request.setAttribute(DEBUG_PARAM, "debugit");
             request.getServletContext().setAttribute(DEBUG_PARAM, "debugit");
             debugRequestParameters(request, response);
@@ -339,13 +321,15 @@ public class DailyTransactionEntry extends AbstractServlet {
 
         if(mapParameters.containsKey(CANCEL)) {
             LOGGER.log(Level.INFO,"Cancel Submission Detected");
-            session.setAttribute(CLASS_NAME.concat(".session"), "complete");
+            session.setAttribute(SESSION, "complete");
+            /*
             request.removeAttribute(TRAN_DATE);
             request.removeAttribute(TRAN_DATE_TIME_FORMAT);
             request.removeAttribute(TRAN_TIME);
             request.removeAttribute(TRAN_AMOUNT);
             request.removeAttribute(TRAN_ACCOUNT);
             request.removeAttribute(TRAN_NOTE);
+            */
             doGet(request,response);
         }
         
@@ -383,14 +367,17 @@ public class DailyTransactionEntry extends AbstractServlet {
                     forward(request,response,CONFIRM_PAGE_JSTL);
                 else
                     forward(request,response,CONFIRM_PAGE);
+                return;
             }
             session.setAttribute(SESSION, "complete");
+            /*
             request.removeAttribute(TRAN_DATE);
             request.removeAttribute(TRAN_DATE_TIME_FORMAT);
             request.removeAttribute(TRAN_TIME);
             request.removeAttribute(TRAN_AMOUNT);
             request.removeAttribute(TRAN_ACCOUNT);
             request.removeAttribute(TRAN_NOTE); 
+            */
 
             //request.setAttribute(CLASS_NAME.concat(TRAN_DATE, null);
             loadDropDownBox(request, response);
@@ -406,7 +393,7 @@ public class DailyTransactionEntry extends AbstractServlet {
         }
         
         if(mapParameters.containsKey(SUBMIT)) {
-            LOGGER.log(Level.FINE,"doPost submit submission detected");
+            LOGGER.log(Level.INFO,"doPost submit submission detected");
             if(!isFormDateTimeValid(request,response)) {
                String message = buildInvalidDateTimeMessage(mapParameters);
                request.setAttribute(MESSAGE, message);
@@ -435,13 +422,13 @@ public class DailyTransactionEntry extends AbstractServlet {
                    dt=DateUtilities.getDate(mapParameters.get(TRAN_DATE_P) + " " + mapParameters.get(TRAN_TIME_P), 
                                             WebConstants.DATE_FORMAT_MM_DD_YYYY_HH_MM_AM_PM,
                                             Locale.US);
-                   request.setAttribute(TRAN_DATE_TIME_FORMAT,WebConstants.DATE_FORMAT_MM_DD_YYYY_HH_MM_AM_PM);
+                //   request.setAttribute(TRAN_DATE_TIME_FORMAT,WebConstants.DATE_FORMAT_MM_DD_YYYY_HH_MM_AM_PM);
                 }//if//
                 if(mapParameters.containsKey(TRAN_DATE_P) && mapParameters.get(TRAN_DATE_P).indexOf("-") > -1) {
                    dt=DateUtilities.getDate(mapParameters.get(TRAN_DATE_P) + " " + mapParameters.get(TRAN_TIME_P), 
                                             WebConstants.DATE_FORMAT_YYYY_MM_DD_HH_MM,
                                             Locale.US);
-                   request.setAttribute(TRAN_DATE_TIME_FORMAT,WebConstants.DATE_FORMAT_YYYY_MM_DD_HH_MM);
+                 //  request.setAttribute(TRAN_DATE_TIME_FORMAT,WebConstants.DATE_FORMAT_YYYY_MM_DD_HH_MM);
                 }//if//
                 TransactionLine tl = null;
                 if(mapParameters.get(TRAN_ACCOUNT_P).equals(TRAN_OTHER_V)) {
@@ -508,19 +495,6 @@ public class DailyTransactionEntry extends AbstractServlet {
             request.setAttribute(MESSAGE, "");
         
         loadDropDownBox(request,response);
-        Enumeration e1 = null;
-        Enumeration e2 = null;
-        if(mapParameters.containsKey(DEBUG_JSP) && mapParameters.get(DEBUG_JSP).equals("true")) {
-            // Set up a dummy debugRequest attribute to get it in the list
-            //request.setAttribute(DEBUG_PARAMETERS, "");
-            //request.setAttribute(DEBUG_REQUEST, "");
-            //request.setAttribute(DEBUG_SESSION, "");            
-            //e1 = request.getAttributeNames();
-            //e2 = session.getAttributeNames();
-            //request.setAttribute(DEBUG_PARAMETERS, mapParameters);
-            //request.setAttribute(DEBUG_REQUEST, e1);
-            //request.setAttribute(DEBUG_SESSION, e2);
-        }//if//
 
         if(isJSTL) {
             forward(request,response,DAILY_TRANSACTION_ENTRY_PAGE_JSTL);
@@ -528,7 +502,7 @@ public class DailyTransactionEntry extends AbstractServlet {
         else {
             forward(request,response,DAILY_TRANSACTION_ENTRY_PAGE);
         }//else//
-        request.setAttribute(CLASS_NAME.concat(".message"), "");
+        request.setAttribute(MESSAGE, "");
     }    
 
     /**
