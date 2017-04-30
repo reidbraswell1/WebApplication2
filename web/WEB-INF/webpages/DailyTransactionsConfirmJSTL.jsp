@@ -17,7 +17,7 @@
     <body>
         <c:set var="paramString" scope="page" value=""/>
         <c:set var="headString" scope="page" value=""/>
-        <c:if test="${param['debugJSP'] != null && fn:toLowerCase(param['debugJSP']) = 'true'}">
+        <c:if test="${param['debugJSP'] != null and fn:toLowerCase(param['debugJSP']) eq 'true'}">            
             <c:set var="paramString" scope="page" value="&debugJSP=True"/>
             <c:set var="headString" scope="page" value="Debug"/>
         </c:if>        
