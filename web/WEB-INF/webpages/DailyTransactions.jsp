@@ -1,9 +1,12 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="java.lang.String"%>
 <%@page import="java.util.Map"%>
 <% final String CLASS_NAME = "com.webapps.servlets.DailyTransactionEntry"; %>
 <% String message = (String)request.getAttribute(CLASS_NAME.concat(".message")); %>
 <% Map<String, String> map = (Map<String,String>)request.getAttribute(CLASS_NAME.concat(".dropDownList")); %>
+<% List<String> noteList = (List<String>)request.getAttribute("noteDropDownList"); %>
 <% Map<String, String> mapP = (Map<String,String>)request.getAttribute(CLASS_NAME.concat(".debugParameters")); %>
 <% Enumeration el = (Enumeration)request.getAttribute(CLASS_NAME.concat(".debugRequest")); %>
 <% Enumeration e11 = (Enumeration)request.getAttribute(CLASS_NAME.concat(".debugSession")); %>
@@ -40,7 +43,7 @@ and open the template in the editor.
         <h1 align="center">Daily Transaction Entry <%= headString %> </h1>
                 
         <form action="<%= request.getContextPath() %>/DailyTransactionEntry?JSTL=False<%= paramString %>" method="post" enctype="application/x-www-form-urlencoded" >
-            <div style="width: 500px;">
+            <div style="width: 770px;">
                 <label>Date: </label>
                 <input type="date" name="tran_date" required="required" placeholder="MM/DD/YYYY"/>
                 <br />
@@ -65,7 +68,23 @@ and open the template in the editor.
                     <input style="display: inline; margin-left: 1%;" type="hidden" id="newAccount" name="tran_new_account" min="1" max="9999" maxlength="4" oninput="limitLength(this);" placeholder="Other Account Number" required="required"></input>                     
                 <br/>
                     <label>Note: </label>
+                    <select id="selectNote" required name="tran_note" onchange="unhideInputText();">
+        <% Iterator<String> noteListIterator = noteList.iterator();
+           String temp = null;
+           while(noteListIterator.hasNext()) 
+           {
+               temp=noteListIterator.next();
+        %>
+                        <option value="<%= temp %>"> <%= temp %> </option>
+        <%
+           }//while//
+        %>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input style="display: inline; margin-left: 1%;" type="hidden" id="newNote" name="tran_new_note" placeholder="Other Note" required="required"></input>                                         
+                    <!--    
                     <input type="text" name="tran_note" required="required" placeholder="Note-Required"/>
+                    -->
             </div>
             <div class="my_content_container">
                 <input class="submits" type="submit" value="Submit" name="Submit"/>
