@@ -5,10 +5,12 @@
  */
 package com.webapps.servlets;
 
+import com.opencsv.CSVReader;
 import com.utilities.date_utilities.DateUtilities;
 //import com.utilities.constants.WebConstants;
 import com.webapps.constants.WebConstants;
 import com.webapps.transactionline.TransactionLine;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -370,16 +372,8 @@ public class DailyTransactionEntry extends AbstractServlet {
                 return;
             }
             session.setAttribute(SESSION, "complete");
-            /*
-            request.removeAttribute(TRAN_DATE);
-            request.removeAttribute(TRAN_DATE_TIME_FORMAT);
-            request.removeAttribute(TRAN_TIME);
-            request.removeAttribute(TRAN_AMOUNT);
-            request.removeAttribute(TRAN_ACCOUNT);
-            request.removeAttribute(TRAN_NOTE); 
-            */
 
-            //request.setAttribute(CLASS_NAME.concat(TRAN_DATE, null);
+            /*
             loadDropDownBox(request, response);
             request.setAttribute(MESSAGE,"");
             if(isJSTL) {
@@ -388,6 +382,8 @@ public class DailyTransactionEntry extends AbstractServlet {
             else {
                forward(request,response,DAILY_TRANSACTION_ENTRY_PAGE);
             }//else//
+            */
+            doGet(request,response);
             return;
             //doGet(request,response);
         }
@@ -494,7 +490,13 @@ public class DailyTransactionEntry extends AbstractServlet {
         if(!mapParameters.containsKey(MESSAGE))
             request.setAttribute(MESSAGE, "");
         
+        // Load Account Drop Down Box
         loadDropDownBox(request,response);
+        
+        // Load Note Drop Down Box
+        CSVReader reader2 = new CSVReader(new FileReader(WebConstants.getFilePath()));
+        List<String[]>myList = reader2.readAll();        
+        loadNoteDropDownList(request,response,myList);
 
         if(isJSTL) {
             forward(request,response,DAILY_TRANSACTION_ENTRY_PAGE_JSTL);
