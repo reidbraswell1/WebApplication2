@@ -1,7 +1,3 @@
-<%@page import="java.util.Enumeration"%>
-<%@page import="java.lang.String"%>
-<%@page import="java.util.Map"%>
-<% Map<String, String[]> mapP = request.getParameterMap(); %>
 <%@ taglib prefix="c"       uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"     uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn"      uri="http://java.sun.com/jsp/jstl/functions" %>
