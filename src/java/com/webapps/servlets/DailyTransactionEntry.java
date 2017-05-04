@@ -57,6 +57,7 @@ public class DailyTransactionEntry extends AbstractServlet {
     private static final String TRAN_NEW_ACCOUNT_P= "tran_new_account";
     private static final String TRAN_NOTE         = CLASS_NAME.concat(".tran_note");
     private static final String TRAN_NOTE_P       = "tran_note";
+    private static final String TRAN_NEW_NOTE_P   = "tran_new_note";
     private static final String TRAN_OTHER_V      = "Other";
     private static final String TRAN_DATE_TIME_FORMAT = CLASS_NAME.concat(".tran_date_time_format");
     private static final String DEBUG_JSP         = "debugJSP";
@@ -398,15 +399,14 @@ public class DailyTransactionEntry extends AbstractServlet {
                LOGGER.log(Level.INFO,"doPost JSTL = " + mapParameters.containsKey(JSTL)); 
                loadDropDownBox(request,response);
                request.removeAttribute(TRAN_DATE);
-               request.removeAttribute(TRAN_DATE_TIME_FORMAT);
                request.removeAttribute(TRAN_TIME);
                request.removeAttribute(TRAN_AMOUNT);
                request.removeAttribute(TRAN_ACCOUNT);
                request.removeAttribute(TRAN_NOTE); 
                if(isJSTL)
-                   forward(request,response,CONFIRM_PAGE_JSTL);
+                   forward(request,response,DAILY_TRANSACTION_ENTRY_PAGE_JSTL);
                else 
-                   forward(request,response,CONFIRM_PAGE);
+                   forward(request,response,DAILY_TRANSACTION_ENTRY_PAGE);
                
                request.setAttribute(MESSAGE, "");
                //doGet(request,response);
@@ -426,18 +426,28 @@ public class DailyTransactionEntry extends AbstractServlet {
                                             Locale.US);
                  //  request.setAttribute(TRAN_DATE_TIME_FORMAT,WebConstants.DATE_FORMAT_YYYY_MM_DD_HH_MM);
                 }//if//
-                TransactionLine tl = null;
-                if(mapParameters.get(TRAN_ACCOUNT_P).equals(TRAN_OTHER_V)) {
-                   tl = new TransactionLine(dt, mapParameters.get(TRAN_AMOUNT_P),
-                                                                mapParameters.get(TRAN_NEW_ACCOUNT_P), 
-                                                                mapParameters.get(TRAN_NOTE_P).trim());
 
-                }//if//
+                TransactionLine tl = null;
+                String tranAccount = null;
+                String tranAmount = null;
+                String tranNote = null;
+                if(mapParameters.get(TRAN_ACCOUNT_P).equals(TRAN_OTHER_V)) {
+                   tranAccount = mapParameters.get(TRAN_NEW_ACCOUNT_P);
+                }
                 else {
-                   tl = new TransactionLine(dt, mapParameters.get(TRAN_AMOUNT_P),
-                                                                mapParameters.get(TRAN_ACCOUNT_P), 
-                                                                mapParameters.get(TRAN_NOTE_P).trim());
-                }//else//
+                   tranAccount = mapParameters.get(TRAN_ACCOUNT_P);
+                }
+                tranAmount = mapParameters.get(TRAN_AMOUNT_P);
+                if(mapParameters.get(TRAN_NOTE_P).equals(TRAN_OTHER_V)) {
+                   tranNote = mapParameters.get(TRAN_NEW_NOTE_P);
+                }
+                else {
+                   tranNote = mapParameters.get(TRAN_NOTE_P);
+                }
+    
+                tl = new TransactionLine(dt, tranAmount,
+                                             tranAccount, 
+                                             tranNote.trim());
                 String lineWritten;
                 lineWritten = tl.writeTransactionLine(false);
                 request.setAttribute(MESSAGE, lineWritten);
