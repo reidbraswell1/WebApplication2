@@ -182,7 +182,7 @@ public class DailyTransactionSearchServlet extends AbstractServlet {
         if(!map.containsKey(DATE_SEARCH_P) && !map.containsKey(ACCOUNT_SEARCH_P) && !map.containsKey(NOTE_SEARCH_P)) {
             message = "Must choose at least 1 method of searching from the check boxes";
         }
-        request.setAttribute("message",message);
+        request.setAttribute(MESSAGE,message);
         return message;
     }//validateCheckBoxes//
     
