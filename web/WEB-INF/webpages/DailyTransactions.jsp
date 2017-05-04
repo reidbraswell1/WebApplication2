@@ -6,7 +6,7 @@
 <% final String CLASS_NAME = "com.webapps.servlets.DailyTransactionEntry"; %>
 <% String message = (String)request.getAttribute(CLASS_NAME.concat(".message")); %>
 <% Map<String, String> map = (Map<String,String>)request.getAttribute(CLASS_NAME.concat(".dropDownList")); %>
-<% List<String> noteList = (List<String>)request.getAttribute("noteDropDownList"); %>
+<% List<String> noteList = (List<String>)request.getAttribute(CLASS_NAME.concat(".noteDropDownList")); %>
 <% Map<String, String> mapP = (Map<String,String>)request.getAttribute(CLASS_NAME.concat(".debugParameters")); %>
 <% Enumeration el = (Enumeration)request.getAttribute(CLASS_NAME.concat(".debugRequest")); %>
 <% Enumeration e11 = (Enumeration)request.getAttribute(CLASS_NAME.concat(".debugSession")); %>
@@ -81,7 +81,7 @@ and open the template in the editor.
         %>
                         <option value="Other">Other</option>
                     </select>
-                    <input style="display: inline; margin-left: 1%;" type="hidden" id="newNote" name="tran_new_note" placeholder="Other Note" required="required"></input>                                         
+                    <input style="display: inline; margin-left: 1%;" type="hidden" id="newNote" name="tran_new_note" placeholder="Other Note" required="required"></input>
                     <!--    
                     <input type="text" name="tran_note" required="required" placeholder="Note-Required"/>
                     -->
