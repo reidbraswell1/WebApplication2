@@ -1,9 +1,9 @@
 <%@ taglib prefix="c"       uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"     uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn"      uri="http://java.sun.com/jsp/jstl/functions" %>
-<c:set var="message" value="${requestScope['com.webapps.servlets.DailyTransactionEntry.message']}"/>
-<c:set var="dropDownList" value="${requestScope['com.webapps.servlets.DailyTransactionEntry.dropDownList']}"/>
-<c:set var="noteDropDownList" value="${requestScope['com.webapps.servlets.AbstractServlet.noteDropDownList']}"/>
+<c:set var="message" scope="page" value="${requestScope['com.webapps.servlets.DailyTransactionEntry.message']}"/>
+<c:set var="dropDownList" scope="page" value="${requestScope['com.webapps.servlets.DailyTransactionEntry.dropDownList']}"/>
+<c:set var="noteDropDownList" scope="page" value="${requestScope['com.webapps.servlets.AbstractServlet.noteDropDownList']}"/>
 <c:set var="session" scope="page" value="${sessionScope['com.webapps.servlets.DailyTransactionEntry.session']}"/>
 <%--
 <c:set var="debugParameters" value="${requestScope['com.webapps.servlets.DailyTransactionEntry.debugParameters']}"/>
