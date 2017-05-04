@@ -3,7 +3,7 @@
 <%@ taglib prefix="fn"      uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="message" value="${requestScope['com.webapps.servlets.DailyTransactionEntry.message']}"/>
 <c:set var="dropDownList" value="${requestScope['com.webapps.servlets.DailyTransactionEntry.dropDownList']}"/>
-<c:set var="noteDropDownList" value="${requestScope['com.webapps.servlets.DailyTransactionEntry.noteDropDownList']}"/>
+<c:set var="noteDropDownList" value="${requestScope['com.webapps.servlets.AbstractServlet.noteDropDownList']}"/>
 <c:set var="session" scope="page" value="${sessionScope['com.webapps.servlets.DailyTransactionEntry.session']}"/>
 <%--
 <c:set var="debugParameters" value="${requestScope['com.webapps.servlets.DailyTransactionEntry.debugParameters']}"/>
