@@ -42,12 +42,14 @@ public abstract class AbstractServlet extends HttpServlet {
     private static Log log = LogFactory.getLog(AbstractServlet.class);
     private static Logger LOGGER = Logger.getLogger(AbstractServlet.class.getName());
     
+    private static final String CLASS_NAME          = DailyTransactionEntry.class.getName();
+    private static final String NOTE_DROP_DOWN_LIST = CLASS_NAME.concat(".noteDropDownList");
     
-     private static final int DATE = 0;
-     private static final int TIME = 1;
-     private static final int AMOUNT = 2;
-     private static final int ACCOUNT = 3;
-     private static final int NOTE = 4;
+    private static final int DATE = 0;
+    private static final int TIME = 1;
+    private static final int AMOUNT = 2;
+    private static final int ACCOUNT = 3;
+    private static final int NOTE = 4;
                
      public AbstractServlet()
      {
@@ -162,7 +164,7 @@ public abstract class AbstractServlet extends HttpServlet {
        }//while//
        sb.append("}");
        LOGGER.log(Level.FINE,"Note Drop Down List After Sort = " + sb.toString());
-       request.setAttribute("noteDropDownList", searchList);        
+       request.setAttribute(NOTE_DROP_DOWN_LIST, searchList);        
     }//loadNoteDropDownList//
     
     /**
