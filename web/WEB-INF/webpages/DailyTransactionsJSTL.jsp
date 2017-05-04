@@ -7,6 +7,7 @@
 <%@ taglib prefix="fn"      uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="message" value="${requestScope['com.webapps.servlets.DailyTransactionEntry.message']}"/>
 <c:set var="dropDownList" value="${requestScope['com.webapps.servlets.DailyTransactionEntry.dropDownList']}"/>
+<c:set var="noteDropDownList" value="${requestScope['com.webapps.servlets.DailyTransactionEntry.noteDropDownList']}"/>
 <c:set var="session" scope="page" value="${sessionScope['com.webapps.servlets.DailyTransactionEntry.session']}"/>
 <%--
 <c:set var="debugParameters" value="${requestScope['com.webapps.servlets.DailyTransactionEntry.debugParameters']}"/>
@@ -32,28 +33,7 @@ and open the template in the editor.
         <style>
         </style>
 
-        <script>
-            function unhideInput() {
-                //alert("hello");
-                var x=document.getElementById("selectAccount");
-                var y=document.getElementById("newAccount");
-                if(x.value=="Other") {
-                    y.setAttribute('type','number');
-                }
-                else {
-                    y.setAttribute('type','hidden');
-                }
-            }//unhideInput//
-            function hideInput() {
-                //alert("hello");
-                var y=document.getElementById("newAccount");
-                    y.setAttribute('type','hidden');
-            }//unhideInput//            
-            function limitLength(object) {
-                if (object.value.length > 4) {
-                    object.value = object.value.slice(0,4); 
-                }//if//
-            }//limitLength//
+        <script src="${pageContext.request.contextPath}/includes/js/DailyTransactions.js" type="text/javascript">
         </script>
     </head>
     <body>
@@ -63,8 +43,8 @@ and open the template in the editor.
             <c:set var="paramString" scope="page" value="&debugJSP=True"/>
             <c:set var="headString" scope="page" value="Debug"/>
         </c:if>
-        <h1 align="center">Daily Transaction Entry JSTL <c:out value="${headString}"/> </h1>
-        <form action="<%= request.getContextPath() %>/DailyTransactionEntry?JSTL=True<c:out value="${paramString}"/>" method="post" enctype="application/x-www-form-urlencoded" >
+        <h1 align="center">Daily Transaction Entry JSTL ${headString} </h1>
+        <form action="<%= request.getContextPath() %>/DailyTransactionEntry?JSTL=True${paramString}" method="post" enctype="application/x-www-form-urlencoded" >
             <div style="width: 500px">
                 <label for="tranDate" >Date: </label>
                 <input type="date" id="tranDate" name="tran_date" required="required" placeholder="MM/DD/YYYY"/>
@@ -88,7 +68,16 @@ and open the template in the editor.
                     <input style="display: inline; margin-left: 1%;" type="hidden" id="newAccount" name="tran_new_account" min="1" max="9999" maxlength="4" oninput="limitLength(this);" placeholder="Other Account Number" required="required"></input>
                 <br/>
                     <label for="tranNote">Note: </label>
+                    <select id="selectNote" required name="tran_note" onchange="unhideInputText();">
+                        <c:forEach var="noteItem" items="${noteDropDownList}">
+                            <option value="${noteItem}"> ${noteItem} </option>
+                        </c:forEach>
+                            <option value="Other">Other</option>
+                    </select>
+                    <input style="display: inline; margin-left: 1%;" type="hidden" id="newNote" name="tran_new_note" placeholder="Other Note" required="required"></input>
+                    <!--
                     <input type="text" id="tranNote" name="tran_note" required="required" placeholder="Note-Required"/>
+                    -->
             </div>
             <div class="my_content_container">
                 <input class="submits" type="submit" value="Submit" name="Submit"/>
@@ -99,7 +88,7 @@ and open the template in the editor.
                 <input class="submits" type="reset" onclick="hideInput()"/>
             </div>
             <div>
-                <p class="message"> <c:out value="${pageScope['message']}"></c:out> </p>
+                <p class="message"> ${pageScope['message']} </p>
             </div>
         </form>
         <%@include file="/WEB-INF/webpages/DebugParametersJSTL.jsp" %> 
