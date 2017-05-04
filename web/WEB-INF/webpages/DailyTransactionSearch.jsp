@@ -5,9 +5,10 @@
 <%@page import="java.util.List"%>
 <%@page import="java.lang.String"%>
 <%@page import="java.util.Map"%>
-<% Map<String, String> map = (Map<String,String>)request.getAttribute("dropDownValues"); %>
-<% List<String> noteList = (List<String>)request.getAttribute("noteDropDownList"); %>
-<% List<String> accountList = (List<String>)request.getAttribute("accountDropDownList"); %>
+<c:set var="message" scope="page" value="${requestScope['com.webapps.servlets.DailyTransactionSearchServlet.message']}"/>
+<c:set var="accountDropDownList" scope="page" value="${requestScope['com.webapps.servlets.AbstractServlet.accountDropDownList']}"/>
+<c:set var="noteDropDownList" scope="page" value="${requestScope['com.webapps.servlets.AbstractServlet.noteDropDownList']}"/>
+<c:set var="session" scope="page" value="${sessionScope['com.webapps.servlets.DailyTransactionSearchServlet.session']}"/>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -34,9 +35,9 @@ and open the template in the editor.
             <c:set var="paramString" scope="page" value="?debugJSP=True"/>
             <c:set var="headString" scope="page" value="Debug"/>
         </c:if>        
-        <h1 align="center">Daily Transaction Search <c:out value="${headString}"/> </h1> 
+        <h1 align="center">Daily Transaction Search ${headString} </h1> 
         
-        <form action="<c:out value="${pageContext.servletContext.contextPath}"/>/DailyTransactionSearch<c:out value="${paramString}"/>" method="post" enctype="application/x-www-form-urlencoded" >
+        <form action="${pageContext.servletContext.contextPath}/DailyTransactionSearch${paramString}" method="post" enctype="application/x-www-form-urlencoded" >
             <div style="width: 550px">
                 <label>Start Date: </label>
                 <input type="date" name="start_date" placeholder="MM/DD/YYYY"/>
@@ -46,14 +47,14 @@ and open the template in the editor.
                 <br/>
                 <label>Account: </label>
                 <select name="tran_account">
-                    <c:forEach var="accountItem" items="${requestScope.accountDropDownList}">
+                    <c:forEach var="accountItem" items="${pageScope.accountDropDownList}">
                         <option value ="${accountItem}">${accountItem}</option>
                     </c:forEach>
                 </select>
                 <br/>
                 <label>Note: </label>
                 <select name="tran_note">
-                    <c:forEach var="noteItem" items="${requestScope.noteDropDownList}">
+                    <c:forEach var="noteItem" items="${pageScope.noteDropDownList}">
                         <option value="${noteItem}">${noteItem}</option>
                     </c:forEach>
                 </select>
@@ -61,7 +62,7 @@ and open the template in the editor.
                 <label>Items / Page: </label>
                 <select name="tran_items_page">
                    <c:forEach begin="0" end="30" step="5" var="i">
-                       <option value="<c:out value="${i}"/>"> <c:out value="${i}"/> </option>
+                       <option value="${i}"> ${i} </option>
                    </c:forEach>
                 </select>                
             </div>
@@ -82,7 +83,7 @@ and open the template in the editor.
                 </c:if>
             </div>
             <div>
-                <span class="message"> <c:out value="${requestScope.message}"/> </span>
+                <span class="message"> ${pageScope.message} </span>
             </div>
         </form>
         <%@include file="/WEB-INF/webpages/DebugParametersJSTL.jsp" %>
