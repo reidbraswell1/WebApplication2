@@ -4,9 +4,10 @@
 <%@page import="java.lang.String"%>
 <%@page import="java.util.Map"%>
 <% final String CLASS_NAME = "com.webapps.servlets.DailyTransactionEntry"; %>
+<% final String CLASS_NAME2 = "com.webapps.servlets.AbstractServlet"; %>
 <% String message = (String)request.getAttribute(CLASS_NAME.concat(".message")); %>
 <% Map<String, String> map = (Map<String,String>)request.getAttribute(CLASS_NAME.concat(".dropDownList")); %>
-<% List<String> noteList = (List<String>)request.getAttribute(CLASS_NAME.concat(".noteDropDownList")); %>
+<% List<String> noteList = (List<String>)request.getAttribute(CLASS_NAME2.concat(".noteDropDownList")); %>
 <% Map<String, String> mapP = (Map<String,String>)request.getAttribute(CLASS_NAME.concat(".debugParameters")); %>
 <% Enumeration el = (Enumeration)request.getAttribute(CLASS_NAME.concat(".debugRequest")); %>
 <% Enumeration e11 = (Enumeration)request.getAttribute(CLASS_NAME.concat(".debugSession")); %>
