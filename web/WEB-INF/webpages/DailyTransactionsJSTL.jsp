@@ -65,7 +65,7 @@ and open the template in the editor.
                 <br/>
                     <label for="tranNote">Note: </label>
                     <select id="selectNote" required name="tran_note" onchange="unhideInputText();">
-                        <c:forEach var="noteItem" items="${noteDropDownList}">
+                        <c:forEach var="noteItem" items="${pageScope['noteDropDownList']}">
                             <option value="${noteItem}"> ${noteItem} </option>
                         </c:forEach>
                             <option value="Other">Other</option>
