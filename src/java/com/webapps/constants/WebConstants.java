@@ -6,7 +6,11 @@
 package com.webapps.constants;
 
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletContextListener;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  *
@@ -30,6 +34,9 @@ public class WebConstants {
     public  static final String DATE_FORMAT_MM_DD_YY_HH_MM = "MM/dd/yy HH:mm";
     public  static final String DATE_FORMAT_MM_DD_YY = "MM/dd/yy";
     public  static final String LOG_LEVEL = "loglevel";
+    
+    private static Log log = LogFactory.getLog(ServletContextListener.class);
+    private static Logger LOGGER = Logger.getLogger(ServletContextListener.class.getName());
     
     public WebConstants() {
         
@@ -103,8 +110,20 @@ public class WebConstants {
      * @param aLoglevel the logLevel to set
      */
     public static void setLogLevel(String aLogLevel) {
-        logLevel = Level.parse(aLogLevel);
-    }
+        
+        try {
+            logLevel = Level.parse(aLogLevel);
+        }
+        catch (IllegalArgumentException e) {
+            LOGGER.log(Level.SEVERE,"Log Level in properties file is not parsable - setting level to INFO");
+            try {
+                logLevel = Level.parse("INFO");
+            }//try//
+            catch (IllegalArgumentException ex) {
+                LOGGER.log(Level.SEVERE,"Unable to set log level");
+            }//catch//
+        }//catch//
+    }//setLogLevel//
     
     
 }//Constants//
