@@ -58,7 +58,7 @@ public class WebApplication2ServletContextListener implements ServletContextList
            LOGGER.info(WebConstants.FILE_PATH + "=" + WebConstants.getFilePath());
            LOGGER.info(WebConstants.ACCT_NBR + "=" + WebConstants.getAcctNbr());
            LOGGER.info(WebConstants.ACCT_NBR_DESC + "=" + WebConstants.getAcctNbrDesc());
-           LOGGER.info(WebConstants.LOG_LEVEL + "=" + WebConstants.getLogLevel().toString());
+           LOGGER.info(WebConstants.LOG_LEVEL + "=" + WebConstants.getLogLevel());
        }
        catch(IOException ex) {
            LOGGER.severe(ex.getMessage());
