@@ -14,7 +14,9 @@ and open the template in the editor.
                 /*
                 list-style-type: none;
                 */
+               
                 list-style-position: inside;
+               
                 /*
                 border: 1px solid black;
                 width: 26%;
@@ -25,6 +27,9 @@ and open the template in the editor.
                 border: 1px solid black;
                 padding: 7px;
                 width: 30%;
+                /*
+                display: inline;
+                */
             }
             ol li:hover {
                 font-weight: bold;
@@ -57,14 +62,18 @@ and open the template in the editor.
     <body>
         <h2>WebApplication 2 Index</h2>
         <div>
+            <h3>Data Entry</h3>
             <ol>
-                <li class="lime"><a href="DailyTransactionEntry?JSTL=False">Daily Transactions</a></li>
-                <li class="orange"><a href="DailyTransactionEntry?JSTL=False&debugJSP=True">Daily Transactions Debug JSP</a></li>
-                <li class="lime"><a href="DailyTransactionEntry?JSTL=True">Daily Transactions JSTL</a></li>
-                <li class="orange"><a href="DailyTransactionEntry?JSTL=True&debugJSP=True">Daily Transactions JSTL Debug JSP</a></li>
-                <li class="lime"><a href="DailyTransactionSearch?JSTL=False">Daily Transaction Search</a></li>
-                <li class="orange"><a href="DailyTransactionSearch?JSTL=False&debugJSP=True">Daily Transaction Search Debug JSP</a></li>
-                <li>Next Index Entry</li>
+                <li class="lime"><a  target="_blank" href="DailyTransactionEntry?JSTL=False">Daily Transactions</a></li>
+                <li class="orange"><a target="_blank" href="DailyTransactionEntry?JSTL=False&debugJSP=True">Daily Transactions Debug JSP</a></li>
+                <li class="lime"><a target="_blank" href="DailyTransactionEntry?JSTL=True">Daily Transactions JSTL</a></li>
+                <li class="orange"><a target="_blank" href="DailyTransactionEntry?JSTL=True&debugJSP=True">Daily Transactions JSTL Debug JSP</a></li>
+            </ol>
+            <br>
+            <h3>Search</h3>
+            <ol>
+                <li class="lime"><a target="_blank" href="DailyTransactionSearch?JSTL=False">Daily Transaction Search</a></li>
+                <li class="orange"><a target="_blank" href="DailyTransactionSearch?JSTL=False&debugJSP=True">Daily Transaction Search Debug JSP</a></li>
             </ol>
         </div>
     </body>
