@@ -153,6 +153,10 @@ public abstract class AbstractServlet extends HttpServlet {
                   sb.append(temp[NOTE] + ", ");
            }//if//
        }//while//
+       if(searchList.isEmpty()) {
+           searchList.add("***NO DATA***");
+           sb.append("***NO DATA***");
+       }//if
        sb.append("}");
        LOGGER.log(Level.FINE,"Note Drop Down List Before Sort = " + sb.toString());
        Collections.sort(searchList);
