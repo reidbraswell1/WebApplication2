@@ -109,9 +109,18 @@ public class DailyTransactionSearchServlet extends AbstractServlet {
              sb.append(",");
          }//if//
          if(map.containsKey(NOTE_SEARCH_P)) {
-             sb.append("Note=");
-             sb.append(map.get(TRAN_NOTE_P));
-             sb.append(",");
+            if(map.containsKey(TRAN_SEARCH_P)) { 
+               if(map.get(TRAN_SEARCH_P).equals(TRAN_SEARCH_EQUAL)) {
+                  sb.append("Note=");
+                  sb.append(map.get(TRAN_NOTE_P));
+                  sb.append(",");
+               }//if//
+               if(map.get(TRAN_SEARCH_P).equals(TRAN_SEARCH_LIKE)) {
+                  sb.append("Note=");
+                  sb.append(map.get(TRAN_NOTE_S));
+                  sb.append(",");
+               }//if//
+            }//if//
          }//if//
          if(map.containsKey(TRAN_ITEMS_PAGE_P)) {
              sb.append("Items per page=");
