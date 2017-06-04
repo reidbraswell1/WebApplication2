@@ -26,7 +26,8 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
         </style>
-
+        <script src="${pageContext.request.contextPath}/includes/js/DailyTransactions.js" type="text/javascript">
+        </script>
     </head>
     <body>
         <c:set var="paramString" scope="page" value=""/>
@@ -52,12 +53,20 @@ and open the template in the editor.
                     </c:forEach>
                 </select>
                 <br/>
-                <label>Note: </label>
-                <select name="tran_note">
+                <label for="tranNote">Note: </label>
+                <select id="tranNote" name="tran_note">
                     <c:forEach var="noteItem" items="${pageScope.noteDropDownList}">
                         <option value="${noteItem}">${noteItem}</option>
                     </c:forEach>
                 </select>
+                <input id="inputLike" type="hidden" name="searchLikeInput" placeholder="Enter your note"/>
+                <br>
+
+                <label for="searchEqual">Equal</label>
+                <input type="radio" id="searchEqual" name="tran_search" value="tran_searchEqual" checked="checked" onclick="hideInput2('inputLike','tranNote');"/>
+                <label for="searchLike">Like</label>
+                <input type="radio" id="searchLike" name="tran_search" value="tran_searchLike" onclick="unhideInput2('inputLike','tranNote');"/>
+                
                 <br/>
                 <label>Items / Page: </label>
                 <select name="tran_items_page">
