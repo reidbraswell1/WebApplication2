@@ -65,6 +65,10 @@ public class DailyTransactionSearchServlet extends AbstractServlet {
      private static final String SUBMIT_P           = "Submit";
      private static final String TRAN_ACCOUNT_P     = "tran_account";
      private static final String TRAN_NOTE_P        = "tran_note";
+     private static final String TRAN_NOTE_S        = "searchLikeInput";
+     private static final String TRAN_SEARCH_P      = "tran_search";
+     private static final String TRAN_SEARCH_EQUAL  = "tran_searchEqual";
+     private static final String TRAN_SEARCH_LIKE   = "tran_searchLike";
      private static final String TRAN_ITEMS_PAGE_P  = "tran_items_page";
      
      private static final String SEARCH_PAGE_WEB_INF  = "/WEB-INF/webpages/DailyTransactionSearch.jsp";
@@ -364,12 +368,23 @@ public class DailyTransactionSearchServlet extends AbstractServlet {
         boolean noteSearch = true;
            
         if(map.containsKey(NOTE_SEARCH_P)) {
-            noteSearchString = (String)map.get(TRAN_NOTE_P);
-            if(nextLine[NOTE].equals(noteSearchString))
-                noteSearch = true;
-            else
-                noteSearch = false;
-        } 
+            if(map.containsKey(TRAN_SEARCH_P)) {
+                if(map.get(TRAN_SEARCH_P).equals(TRAN_SEARCH_EQUAL)) {
+                   noteSearchString = (String)map.get(TRAN_NOTE_P).toUpperCase();
+                   if(nextLine[NOTE].toUpperCase().equals(noteSearchString))
+                      noteSearch = true;
+                   else
+                      noteSearch = false;
+                }//if//
+                if(map.get(TRAN_SEARCH_P).equals(TRAN_SEARCH_LIKE)) {
+                   noteSearchString = (String)map.get(TRAN_NOTE_S).toUpperCase();
+                   if(nextLine[NOTE].toUpperCase().indexOf(noteSearchString) > -1)
+                      noteSearch = true;
+                   else
+                      noteSearch = false;
+                }//if//
+            }//if//
+        }//if//
         return noteSearch;   
     }//isNoteSearchValid//
     
