@@ -40,20 +40,20 @@ and open the template in the editor.
         
         <form action="${pageContext.servletContext.contextPath}/DailyTransactionSearch${paramString}" method="post" enctype="application/x-www-form-urlencoded" >
             <div style="width: 550px">
-                <label>Start Date: </label>
-                <input type="date" name="start_date" placeholder="MM/DD/YYYY"/>
+                <label class="inlineBlock" for="startDate">Start Date: </label>
+                <input type="date" id="startDate" name="start_date" placeholder="MM/DD/YYYY"/>
                 <br />
-                <label>End Date: </label>
-                <input type="date" name="end_date" placeholder="MM/DD/YYYY"/>
+                <label class="inlineBlock" for="endDate">End Date: </label>
+                <input type="date" id="endDate" name="end_date" placeholder="MM/DD/YYYY"/>
                 <br/>
-                <label>Account: </label>
+                <label class="inlineBlock">Account: </label>
                 <select name="tran_account">
                     <c:forEach var="accountItem" items="${pageScope.accountDropDownList}">
                         <option value ="${accountItem}">${accountItem}</option>
                     </c:forEach>
                 </select>
                 <br/>
-                <label for="tranNote">Note: </label>
+                <label class="inlineBlock" for="tranNote">Note: </label>
                 <select id="tranNote" name="tran_note">
                     <c:forEach var="noteItem" items="${pageScope.noteDropDownList}">
                         <option value="${noteItem}">${noteItem}</option>
@@ -62,13 +62,13 @@ and open the template in the editor.
                 <input id="inputLike" type="hidden" name="searchLikeInput" placeholder="Enter your note"/>
                 <br>
 
-                <label for="searchEqual">Equal</label>
+                <label class="inlineBlock" for="searchEqual">Equal</label>
                 <input type="radio" id="searchEqual" name="tran_search" value="tran_searchEqual" checked="checked" onclick="hideInput2('inputLike','tranNote');"/>
-                <label for="searchLike">Like</label>
+                <label class="inline" for="searchLike">Like</label>
                 <input type="radio" id="searchLike" name="tran_search" value="tran_searchLike" onclick="unhideInput2('inputLike','tranNote');"/>
                 
                 <br/>
-                <label>Items / Page: </label>
+                <label class="inlineBlock">Items / Page: </label>
                 <select name="tran_items_page">
                    <c:forEach begin="0" end="30" step="5" var="i">
                        <option value="${i}"> ${i} </option>
@@ -77,11 +77,11 @@ and open the template in the editor.
             </div>
             <div style="width: 415px; border: 1px solid red;">
                 <p style="font-weight: bold; text-align: center;">Search By</p>
-                <label for="cbox1">Date ?</label>
+                <label class="inlineBlock" for="cbox1">Date ?</label>
                 <input type="checkbox" id="cbox1" name="date_search" value="true">
-                <label for="cbox2">Account ?</label>
+                <label class="inline" for="cbox2">Account ?</label>
                 <input type="checkbox" id="cbox2" name="account_search" value="true">
-                <label for="cbox3">Note ?</label>
+                <label class="inline" for="cbox3">Note ?</label>
                 <input type="checkbox" id="cbox3" name="note_search" value="true">
             </div>
             <div class="my_content_container">
