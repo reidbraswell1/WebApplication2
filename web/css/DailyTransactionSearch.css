@@ -33,12 +33,21 @@ div.labels {
     vertical-align: top;
 }
             
-label {
+label.inlineBlock {
     display: inline-block;
     width: 100px;
+    /*
     border: 2px solid red;
+    */
     text-align: right;
     margin-bottom: 10px;
+    font-weight: bold;
+}
+
+label.inline {
+    display: inline;
+    padding-left: 10px;
+    padding-right: 5px;
     font-weight: bold;
 }
 
