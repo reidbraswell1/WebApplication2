@@ -47,19 +47,28 @@ and open the template in the editor.
                 <input type="date" id="endDate" name="end_date" placeholder="MM/DD/YYYY"/>
                 <br/>
                 <label class="inlineBlock">Account: </label>
+                <div class="tooltip">
                 <select name="tran_account">
                     <c:forEach var="accountItem" items="${pageScope.accountDropDownList}">
                         <option value ="${accountItem}">${accountItem}</option>
                     </c:forEach>
                 </select>
+                <span class="tooltiptext">Select an account.</span>
+                </div>
                 <br/>
                 <label class="inlineBlock" for="tranNote">Note: </label>
+                <div class="tooltip">
                 <select id="tranNote" name="tran_note">
                     <c:forEach var="noteItem" items="${pageScope.noteDropDownList}">
                         <option value="${noteItem}">${noteItem}</option>
                     </c:forEach>
                 </select>
+                <span class="tooltiptext">Select a note.</span>
+                </div>
+                <div class="tooltip">
                 <input id="inputLike" type="hidden" name="searchLikeInput" placeholder="Enter your note"/>
+                <span class="tooltiptext">Enter a partial string to search for.</span>
+                </div>
                 <br>
 
                 <label class="inlineBlock" for="searchEqual">Equal</label>
@@ -78,11 +87,11 @@ and open the template in the editor.
             <div style="width: 415px; border: 1px solid red;">
                 <p style="font-weight: bold; text-align: center;">Search By</p>
                 <label class="inlineBlock" for="cbox1">Date ?</label>
-                <input type="checkbox" id="cbox1" name="date_search" value="true">
+                <input type="checkbox" id="cbox1" name="date_search" value="true" onclick="setRequiredDate('startDate','endDate');">
                 <label class="inline" for="cbox2">Account ?</label>
                 <input type="checkbox" id="cbox2" name="account_search" value="true">
                 <label class="inline" for="cbox3">Note ?</label>
-                <input type="checkbox" id="cbox3" name="note_search" value="true">
+                <input type="checkbox" id="cbox3" name="note_search" value="true" onclick="setRequiredNote('inputLike');">
             </div>
             <div class="my_content_container">
                 <input class="submits" type="submit" value="Submit" name="Submit"/>
@@ -90,6 +99,7 @@ and open the template in the editor.
                     <input class="submits" type="submit" value="Debug" name="Debug"/>
                     <input class="submits" type="submit" value="Debug Error" name="DebugError"/>
                 </c:if>
+                <input class="submits" type="reset" onclick="hideInput2('inputLike','tranNote')"/>
             </div>
             <div>
                 <span class="message"> ${pageScope.message} </span>
