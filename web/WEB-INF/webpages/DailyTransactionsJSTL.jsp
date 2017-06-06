@@ -52,6 +52,7 @@ and open the template in the editor.
                 <input type="number" id="tranAmount" name="tran_amount" min=".01" max="9999.99" step=".01" required="required" placeholder="Amount .01-9999.99" />
                 <br/>
                     <label for="selectAccount">Account: </label>
+                    <div class="tooltip">
                     <select id="selectAccount" required name="tran_account" onchange="unhideInput();">
                         <c:forEach var="entry" items="${pageScope['dropDownList']}">
                             <option value="${entry.key}">${entry.value}</option>
@@ -61,16 +62,27 @@ and open the template in the editor.
                         </c:forEach>
                             <option value="Other">Other</option>
                     </select>
+                    <span class="tooltiptext">Select an account.</span>
+                    </div>
+                    <div class="tooltip">
                     <input style="display: inline; margin-left: 1%;" type="hidden" id="newAccount" name="tran_new_account" min="1" max="9999" maxlength="4" oninput="limitLength(this);" placeholder="Other Account Number" required="required"></input>
+                    <span class="tooltiptext">Enter a free form numeric 4 digit account number.</span>
+                    </div>
                 <br/>
                     <label for="tranNote">Note: </label>
+                    <div class="tooltip">
                     <select id="selectNote" required name="tran_note" onchange="unhideInputText();">
                         <c:forEach var="noteItem" items="${pageScope['noteDropDownList']}">
                             <option value="${noteItem}"> ${noteItem} </option>
                         </c:forEach>
                             <option value="Other">Other</option>
                     </select>
+                    <span class="tooltiptext">Select a note.</span>
+                    </div>
+                    <div class="tooltip">
                     <input style="display: inline; margin-left: 1%;" type="hidden" id="newNote" name="tran_new_note" placeholder="Other Note" required="required"></input>
+                    <span class="tooltiptext">Enter a free form note.</span>
+                    </div>
                     <!--
                     <input type="text" id="tranNote" name="tran_note" required="required" placeholder="Note-Required"/>
                     -->
