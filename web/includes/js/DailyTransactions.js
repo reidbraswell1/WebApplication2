@@ -32,7 +32,7 @@ function unhideInputText() {
 function hideInput() {
 //alert("hello");
     var y=document.getElementById("newAccount");
-        y.setAttribute('type','hidden');
+        y.setAttribute("type","hidden");
 }//unhideInput// 
 function hideInput2(idx,idy) {
 //alert("hello");
@@ -46,3 +46,30 @@ function limitLength(object) {
         object.value = object.value.slice(0,4); 
     }//if//
 }//limitLength//
+function setRequiredDate(id1,id2) {
+    var x=document.getElementById(id1);
+    var y=document.getElementById(id2);
+    var z = document.getElementById("cbox1").checked;
+    //alert(z);
+    if(z == true) {
+        x.setAttribute("required","");
+        y.setAttribute("required","");
+    }
+    if(z == false) {
+        x.removeAttribute("required");
+        y.removeAttribute("required");
+    }
+    
+}
+function setRequiredNote(id1) {
+    var x=document.getElementById(id1);
+    var z = document.getElementById("cbox3").checked;
+    //alert(z);
+    if(z == true) {
+        x.setAttribute("required","");
+    }
+    if(z == false) {
+        x.removeAttribute("required");
+    }
+    
+}
